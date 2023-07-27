@@ -1,0 +1,70 @@
+{% extends "webapp/base.html" %} 
+{% load static %}
+
+{% block title %} 
+materiales
+
+{% endblock %} 
+
+{% block content %}
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>MATERIALES</h2>
+          <ol>
+            <li><a href="{% url 'inicio' %}">Home</a></li>
+            
+ 
+            
+          </ol>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descrpcion</th>
+              <th scope="col">Unidad</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Fecha Precio</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mark</td>
+              <td>Mark</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <td>Mark</td>
+              <td>Mark</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <td>Jacob</td>
+              <td>Jacob</td>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock %} 
