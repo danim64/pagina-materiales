@@ -20,40 +20,55 @@ materiales
  
             
           </ol>
+
+
         </div>
+        <br/>  
+        <br/>  
+
+        <div class="container2">
+
+          <form class="form-inline my-2 my-lg-0" action="{% url "listar-materiales" %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Search" name ="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda de Materiales</button>
+          </form>
+
+        </div>
+
+        <br/>
+        <br/>
+        
+
+
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Nombre</th>
+            
               <th scope="col">Descrpcion</th>
+              <th scope="col">Marca</th>
               <th scope="col">Unidad</th>
               <th scope="col">Precio</th>
               <th scope="col">Fecha Precio</th>
+              <th scope="col">Acciones</th>
               
             </tr>
           </thead>
           <tbody>
+            {% for item in materiales %}
+
             <tr>
-              <td>Mark</td>
-              <td>Mark</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+        
+              <td>{{ item.descripcion }}</td>
+              <td>{{ marca.nombre }}</td>
+              <td>{{ item.unidad }}</td>
+              <td>{{ item.precio }}</td>
+              <td>{{ item.fecha_precio }}</td>
+              <td>Editar  | Borrar</td>
             </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Mark</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>Jacob</td>
-              <td>Jacob</td>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {% endfor %} 
+
+            
+
           </tbody>
         </table>
       </div>

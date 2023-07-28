@@ -9,6 +9,9 @@ class Materiales(models.Model):
 
     def __str__(self):
         return f"{self.descripcion}"
+    
+    class Meta:
+        verbose_name_plural = "materiales"
 
 class Grupo(models.Model):
     categoria = models.CharField(max_length=150)
@@ -16,6 +19,8 @@ class Grupo(models.Model):
     materiales = models.ForeignKey(Materiales, on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.categoria}"
+    class Meta:
+        verbose_name_plural = "grupos"
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=150)
@@ -32,3 +37,6 @@ class Proveedor(models.Model):
     materiales = models.ForeignKey(Materiales, on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.nombre}"
+    
+    class Meta:
+        verbose_name_plural = "proveedores"
