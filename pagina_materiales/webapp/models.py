@@ -5,7 +5,7 @@ from django.db import models
 
 class Grupo(models.Model):
     categoria = models.CharField(max_length=150)
-    subcategoria = models.CharField(max_length=150)
+    subcategoria = models.CharField(max_length=150,blank=True,null=True)
     
     def __str__(self):
         return f"{self.categoria}"
@@ -51,4 +51,6 @@ class Materiales(models.Model):
         return f"{self.descripcion}"
     
     class Meta:
-        verbose_name_plural = "materiales"        
+        verbose_name_plural = "materiales" 
+
+

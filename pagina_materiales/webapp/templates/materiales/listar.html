@@ -23,14 +23,17 @@ materiales
 
 
         </div>
-        <br/>  
-        <br/>  
 
+      <br/>  
+      <br/>  
         <div class="container2">
 
           <form class="form-inline my-2 my-lg-0" action="{% url "listar-materiales" %}">
             <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Search" name ="search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda de Materiales</button>
+            <br/>  
+        
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda de Materiales</button> 
+            <a name="" id="" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'crear-material' %}" role="button">Agregar nuevo material</a>
           </form>
 
         </div>
@@ -63,7 +66,7 @@ materiales
               <td>{{ item.unidad }}</td>
               <td>{{ item.precio }}</td>
               <td>{{ item.fecha_precio }}</td>
-              <td>Editar  | Borrar</td>
+              <td>Editar  | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' item.id %}" role="button">Borrar</a></td>
             </tr>
 
             

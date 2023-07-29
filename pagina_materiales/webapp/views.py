@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Materiales, Marca
 from django.db.models import Q
 from django.core.paginator import Paginator
+from .forms import MaterialesForm
 
 # Create your views here.
 
@@ -36,4 +37,35 @@ def materiales(request):
     return render(request, "materiales/listar.html", {
         "paginas": paginas,
 
+    })
+
+
+    material.delete()
+    return redirect("listar-materiales")
+
+
+
+def eliminar(request, id):
+    material = Materiales.objects.get(id=id)  # we need this for both GET and POST
+
+    if request.method == 'POST':
+        # delete the band from the database
+        material.delete()
+        # redirect to the bands list
+        return redirect('listar-materiales')
+
+    # no need for an `else` here. If it's a GET request, just continue
+
+    return render(request,
+                    'materiales/confirm_delete.html',
+                    {'material': material})
+
+def crearMaterial(request):
+    formulario = MaterialesForm(request.POST or None)
+    if formulario.is_valid():
+        formulario.save()
+    return render(request, "materiales/crear.html", {
+        
+        "formulario":formulario
+        
     })
