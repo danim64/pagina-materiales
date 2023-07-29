@@ -54,24 +54,70 @@ materiales
             </tr>
           </thead>
           <tbody>
-            {% for item in materiales %}
+            {% for item in paginas.object_list %}
 
             <tr>
         
               <td>{{ item.descripcion }}</td>
-              <td>{{ marca.nombre }}</td>
+              <td>{{ item.marca.nombre }}</td>
               <td>{{ item.unidad }}</td>
               <td>{{ item.precio }}</td>
               <td>{{ item.fecha_precio }}</td>
               <td>Editar  | Borrar</td>
             </tr>
-            {% endfor %} 
+
+            
+            {% endfor %}       
 
             
 
           </tbody>
         </table>
+        <div>
+
+
+         
+
+          {% block pagination %}
+          {% if paginas.has_previous %}
+        <a href="{% url 'listar-materiales' %}?page={{1}}">
+            ◀️◀️ </a>
+        <a href="{% url 'listar-materiales' %}?page={{paginas.previous_page_number}}">
+            ◀️ </a>          
+
+          {% if paginas.has_next %}
+          <a href="{% url 'listar-materiales' %}?page={{paginas.next_page_number}}">
+              ▶️</a>
+
+              <a href="{% url 'listar-materiales' %}?page={{paginas.paginator.num_pages}}">
+                ▶️▶️</a>
+
+        {% endif%}
+     
+          {% endif%}
+
+
+          {% for page_number in paginas.paginator.get_elided_page_range %}
+              {% if page_number == paginas.paginator.ELLIPSIS %}
+                  {{page_number}}
+              {% else %}
+                  <a
+                      href="{% url 'listar-materiales' %}?page={{page_number}}"
+                      class="{% if page_number == page_obj.number %}current{% endif %}"
+                  >
+                      {{page_number}}
+                  </a>
+              {% endif %}
+
+              
+          {% endfor %}
+ 
+          {% endblock %}
+    
+        </div>
       </div>
+
+
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
@@ -83,3 +129,4 @@ materiales
   </main><!-- End #main -->
 
   {% endblock %} 
+
