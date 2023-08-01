@@ -1,31 +1,8 @@
 
-<form enctype="multipart/form-data" method="post">
+<form enctype="application/x-www-form-urlencoded" method="post">
     {% csrf_token %}
 
-    {% for campo in formulario %}
-  
-    <div class="mb-3">
-     <label for="" class="form-label">{{campo.label}}</label>
-
-
-
-    <input 
-    type="{{ campo.field.widget.input_type }}"
-    class="form-control" 
-    name=" {{campo.name}}" 
-    id="{{campo.id}}" 
-    aria-describedby="helpId" 
-    placeholder="{{campo.label}}"
-
-    
-    />
-
-  
-    </div>
-    <div class="col-12 help-text"> {{campo.errors}} </div>
-  
-   {% endfor %}
-  
-  <input name="" id="" class="btn btn-success" type="submit" value="Enviar informacion">
-  
-  </form>
+ {{ formulario }}
+<br>
+<input type = "submit" value = "Enviar">
+</form>

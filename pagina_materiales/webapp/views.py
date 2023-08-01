@@ -3,6 +3,7 @@ from .models import Materiales, Marca
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .forms import MaterialesForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -40,11 +41,6 @@ def materiales(request):
     })
 
 
-    material.delete()
-    return redirect("listar-materiales")
-
-
-
 def eliminar(request, id):
     material = Materiales.objects.get(id=id)  # we need this for both GET and POST
 
@@ -53,19 +49,34 @@ def eliminar(request, id):
         material.delete()
         # redirect to the bands list
         return redirect('listar-materiales')
-
-    # no need for an `else` here. If it's a GET request, just continue
-
     return render(request,
                     'materiales/confirm_delete.html',
                     {'material': material})
+
 
 def crearMaterial(request):
     formulario = MaterialesForm(request.POST or None)
     if formulario.is_valid():
         formulario.save()
+        return HttpResponseRedirect("confirm-create")
+    
     return render(request, "materiales/crear.html", {
-        
-        "formulario":formulario
-        
+        "formulario":formulario    
     })
+
+
+
+def confirm_create(request):
+    return render(request, "materiales/confirm_create.html")
+
+def confirm_edit(request):
+    return render(request, "materiales/confirm_edit.html")
+
+
+def editar_material(request, id):
+    material = Materiales.objects.get(id=id)
+    formulario = MaterialesForm(request.POST or None, instance=material)
+    if formulario.is_valid() and request.method == "POST":
+        formulario.save()
+        return HttpResponseRedirect("confirm-edit")
+    return render(request, "materiales/editar.html", {"formulario" : formulario})
