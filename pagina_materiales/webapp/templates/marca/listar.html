@@ -13,7 +13,7 @@ materiales
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>MATERIALES</h2>
+          <h2>MARCA</h2>
           <ol>
             <li><a href="{% url 'inicio' %}">Home</a></li>
             
@@ -28,12 +28,12 @@ materiales
       <br/>  
         <div class="container2">
 
-          <form class="form-inline my-2 my-lg-0" action="{% url "listar-materiales" %}">
+          <form class="form-inline my-2 my-lg-0" action="{% url "listar-marca" %}">
             <input class="form-control mr-sm-2" type="search" placeholder="Busqueda" aria-label="Search" name ="search">
             <br/>  
         
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda de Materiales</button> 
-            <a name="" id="" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'crear-material' %}" role="button">Agregar nuevo material</a>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busqueda de Marca</button> 
+            <a name="" id="" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'crear-marca' %}" role="button">Agregar nueva Marca</a>
           </form>
 
         </div>
@@ -47,12 +47,8 @@ materiales
           <thead>
             <tr>
             
-              <th scope="col">Descrpcion</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Unidad</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Fecha Precio</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Categoria</th>
+
               
             </tr>
           </thead>
@@ -61,12 +57,9 @@ materiales
 
             <tr>
         
-              <td>{{ item.descripcion }}</td>
-              <td>{{ item.marca.nombre }}</td>
-              <td>{{ item.unidad }}</td>
-              <td>{{ item.precio }}</td>
-              <td>{{ item.fecha_precio }}</td>
-              <td> <a name="" id="" class="btn btn-info" href="{% url 'editar-material' item.id %}" role="button">Editar</a> | <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' item.id %}" role="button">Borrar</a></td>
+              <td>{{ item.nombre }}</td>
+
+              <td>  <a name="" id="" class="btn btn-danger" href="{% url 'eliminar-marca' item.id %}" role="button">Borrar</a></td>
             </tr>
 
             

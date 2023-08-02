@@ -20,6 +20,32 @@ class MaterialesForm(forms.ModelForm):
 
 
 
+class GrupoForm(forms.ModelForm):
+    categoria = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Categoria', 'style': 'width: 300px;', 'class': 'form-control'}))
+
+    class Meta:   
+        model = Grupo
+        fields = '__all__'
+
+
+class MarcaForm(forms.ModelForm):
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'nombre', 'style': 'width: 300px;', 'class': 'form-control'}))
+
+    class Meta:   
+        model = Marca
+        fields = '__all__'
+
+
+class ProveedorForm(forms.ModelForm):
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre', 'style': 'width: 300px;', 'class': 'form-control'}))
+    direccion = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Direccion', 'style': 'width: 300px;', 'class': 'form-control'}),required=False)
+    ciudad = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ciudad', 'style': 'width: 300px;', 'class': 'form-control'}),required=False)
+    telefono = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Telefono', 'style': 'width: 300px;', 'class': 'form-control'}),required=False)
+    vendedor = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Vendedor', 'style': 'width: 300px;', 'class': 'form-control'}),required=False)
+
+    class Meta:   
+        model = Proveedor
+        fields = '__all__'
 
 
 # https://stackoverflow.com/questions/48041375/django-select-a-valid-choice-that-choice-is-not-one-of-the-available-choices

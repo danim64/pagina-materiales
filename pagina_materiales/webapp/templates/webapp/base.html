@@ -54,9 +54,9 @@
           <li><a class="nav-link scrollto " href="{% url 'inicio' %}">INICIO</a></li>
           <li><a class="nav-link scrollto" href="#about">ACERCA DE </a></li>
           <li><a class="nav-link scrollto" href="{% url 'listar-materiales' %}">MATERIALES</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">GRUPO</a></li>
-          <li><a class="nav-link scrollto" href="#team">MARCA</a></li>
-          <li><a class="nav-link scrollto" href="#team">PROVEEDOR</a></li>
+          <li><a class="nav-link scrollto " href={% url 'listar-grupo' %}>GRUPO</a></li>
+          <li><a class="nav-link scrollto" href={% url 'listar-marca' %}>MARCA</a></li>
+          <li><a class="nav-link scrollto" href={% url 'listar-proveedor' %}>PROVEEDOR</a></li>
           <li><a class="nav-link scrollto" href="#contact">AYUDA</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

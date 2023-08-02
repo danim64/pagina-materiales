@@ -30,13 +30,15 @@ My Blog
     <section class="inner-page">
       <div class="container">
       </br>
-        <h1>ACABAS DE CREAR UN NUEVO  MATERIAL !!!</h1>
+        <h1>ALERA ESTA A PUNTO DE BORRAR UN grupo !!!</h1>
     </br>
       
-    <a name="" id="" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'listar-materiales' %}" role="button">volver</a>
-    <a name="" id="" class="btn btn-outline-success my-2 my-sm-0" href="{% url 'crear-material' %}" role="button">Agregar nuevo Material</a>
+        <p>Seguro que quieres borrar este grupo :  {{ grupo.categoria }}</p>
 
-
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Borrar">
+            </form>
   
       </div>
     </section>
