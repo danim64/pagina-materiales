@@ -26,19 +26,21 @@ SECRET_KEY = 'django-insecure-2q@8x+8$ywo-w3th^$$mgf+8jn*5(*15^wsy!+9brcz!7df=4x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'webapp',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+   
 
 ]
 
@@ -53,6 +55,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pagina_materiales.urls'
+
+CSRF_TRUSTED_ORIGINS=["https://6039-181-62-52-242.ngrok-free.app"]
+
 
 TEMPLATES = [
     {
@@ -84,6 +89,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation

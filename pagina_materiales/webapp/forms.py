@@ -35,6 +35,13 @@ class MarcaForm(forms.ModelForm):
         model = Marca
         fields = '__all__'
 
+class UnidadForm(forms.ModelForm):
+    unidad = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Unidad', 'style': 'width: 300px;', 'class': 'form-control'}))
+
+    class Meta:   
+        model = Unidad
+        fields = '__all__'
+
 
 class ProveedorForm(forms.ModelForm):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Nombre', 'style': 'width: 300px;', 'class': 'form-control'}))

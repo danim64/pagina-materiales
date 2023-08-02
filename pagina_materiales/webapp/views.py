@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Materiales, Marca, Grupo, Proveedor
+from .models import Materiales, Marca, Grupo, Proveedor, Unidad
 from django.db.models import Q
 from django.core.paginator import Paginator
-from .forms import MaterialesForm, GrupoForm, MarcaForm, ProveedorForm
+from .forms import MaterialesForm, GrupoForm, MarcaForm, ProveedorForm, UnidadForm
 from django.http import HttpResponseRedirect
 from django.db.models.deletion import ProtectedError
 
@@ -282,3 +282,66 @@ def eliminar_proveedor(request, id):
     return render(request,
                     'proveedor/confirm_delete.html',
                     {'proveedor': proveedor})
+
+
+def listar_unidades(request):
+
+    search_post = request.GET.get('search')
+    print(search_post)
+
+    if search_post:
+
+        unidad_totales = Unidad.objects.filter(Q(unidad__icontains=search_post))
+        paginator = Paginator(unidad_totales, 10)
+        page = request.GET.get('page')
+        paginas = paginator.get_page(page)
+        
+
+    else:
+        # If not searched, return default posts
+        unidad_totales = Unidad.objects.all().order_by("-unidad")
+        paginator = Paginator(unidad_totales,10)
+        page = request.GET.get('page')
+        paginas = paginator.get_page(page)
+        paginas.adjusted_elided_pages = paginator.get_elided_page_range(page)
+        
+        
+        #marcas= Marca.objects.all()
+    return render(request, "unidades/listar.html", {
+        "paginas": paginas,
+
+    })
+
+def eliminar_unidad(request, id):
+    unidad = Unidad.objects.get(id=id)  # we need this for both GET and POST
+
+    if request.method == 'POST':
+        # delete the band from the database
+        try:
+            unidad.delete()
+        except ProtectedError:
+        # redirect to the bands list
+            return HttpResponseRedirect("cant-erase")
+            
+        
+        
+        return redirect('listar-unidades')
+    return render(request,
+                    'unidades/confirm_delete.html',
+                    {'unidad': unidad})
+
+def cant_erase(request):
+    return render(request, "unidades/cannot_erase.html")
+
+def crearUnidades(request):
+    formulario_und = UnidadForm(request.POST or None)
+    if formulario_und.is_valid():
+        formulario_und.save()
+        return HttpResponseRedirect("confirm-create")
+    
+    return render(request, "unidades/crear.html", {
+        "formulario_und":formulario_und
+    })
+
+def confirm_create_und(request):
+    return render(request, "unidades/confirm_create.html")

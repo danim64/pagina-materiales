@@ -27,7 +27,10 @@ urlpatterns = [
     path("proveedor/editar/<int:id>", views.editar_proveedor, name="editar-proveedor"),
     path("proveedor/eliminar/<int:id>", views.eliminar_proveedor, name="eliminar-proveedor"),
     path("proveedor/eliminar/cant-erase", views.cant_erase_mk, name= "cant-erase_mk"),
-
-
+    path("listar-unidades/", views.listar_unidades, name="listar-unidades"),
+    path("unidades/eliminar/<int:id>", views.eliminar_unidad, name="eliminar-unidades"),
+    path("unidades/eliminar/cant-erase", views.cant_erase, name= "cant-erase"),
+    path("unidades/crear", views.crearUnidades, name="crear-unidades"),
+    path("unidades/confirm-create", views.confirm_create_und, name="confirm-create_unds"),
 
 ]
